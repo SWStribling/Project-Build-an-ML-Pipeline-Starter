@@ -53,12 +53,15 @@ def go(config: DictConfig):
             ##################
             # Implement here #
             ##################
+            
+            component_path = os.path.abspath(os.path.join("src", "basic_cleaning"))
+
             _ = mlflow.run(
-                f"{config['main']['components_repository']}/basic_cleaning",
+                component_path,
                 "main",
                 env_manager="conda",
                 parameters={
-                    "input_artifact": "sample.csv",
+                    "input_artifact": "sample.csv:latest",
                     "output_artifact": "clean_sample.csv",
                     "output_type": "clean_data",
                     "output_description": "Cleaned data sample",
